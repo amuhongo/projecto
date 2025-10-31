@@ -19,8 +19,3 @@ function toggleMode(){
     img.setAttribute('src',"./assets/avatar.png")
    }
 }
-/**
- * git remote add origin https://github.com/amuhongo/projecto.git
-git branch -M main
-git push -u origin main
- */
