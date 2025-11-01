@@ -1,3 +1,6 @@
+/* ==========================================================
+   1. Reset e Variáveis
+   ========================================================== */
 * {
   margin: 0;
   padding: 0;
@@ -8,32 +11,47 @@
   --text-color: white;
   --bg-url: url(./assets/bg-mobile.jpg);
   --stroke-color: rgba(255, 255, 255, 0.5);
-  --surface-color: rgba(255, 255, 255, 0.5);
-  --surface-color-hover: rgba(0, 0, 0, 0.02);
-  --highlight-color: rgba(255, 255, 255, 0.2);
+  --surface-color: rgba(255, 255, 255, 0.4);
+  --surface-color-hover: rgba(255, 255, 255, 0.2);
+  --highlight-color: rgba(255, 255, 255, 0.3);
   --switch-bg-url: url(./assets/moon-stars.svg);
+  --shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+  --transition: 0.3s ease-in-out;
 }
 
-/* ⚠️ Faltava ponto e vírgula após a linha do bg-url */
 .light {
   --text-color: black;
   --bg-url: url(./assets/bg-mobile-light.jpg);
-  --stroke-color: rgba(0, 0, 0, 0.5);
+  --stroke-color: rgba(0, 0, 0, 0.3);
   --surface-color: rgba(0, 0, 0, 0.05);
-  --surface-color-hover: rgba(0, 0, 0, 0.02);
-  --highlight-color: rgba(0, 0, 0, 0.1);
+  --surface-color-hover: rgba(0, 0, 0, 0.1);
+  --highlight-color: rgba(0, 0, 0, 0.15);
   --switch-bg-url: url(./assets/sun.svg);
 }
 
-/* Corpo */
+/* ==========================================================
+   2. Estrutura Geral
+   ========================================================== */
 body {
   background: var(--bg-url) no-repeat top center / cover;
   height: 100vh;
-}
-
-body * {
   font-family: 'Inter', sans-serif;
   color: var(--text-color);
+  transition: background 0.5s ease, color 0.5s ease;
+}
+/* Transição de fade do fundo */
+body::before {
+  content: "";
+  position: fixed;
+  inset: 0;
+  background: var(--bg-url) no-repeat top center / cover;
+  opacity: 1;
+  z-index: -1;
+  transition: opacity 0.8s ease;
+}
+
+.light body::before {
+  opacity: 1;
 }
 
 #container {
@@ -43,27 +61,46 @@ body * {
   padding: 0 24px;
 }
 
-/* Perfil */
+/* ==========================================================
+   3. Perfil
+   ========================================================== */
 #profile {
   text-align: center;
   padding: 24px;
+  animation: fadeIn 1s ease forwards;
 }
 
 #profile img {
   width: 112px;
+  border-radius: 50%;
+  box-shadow: var(--shadow);
+  transition: transform 0.3s ease;
+}
+
+#profile img:hover {
+  transform: scale(1.05);
 }
 
 #profile p {
-  font-weight: 500; /* ⚠️ 'px' removido — valor incorreto */
+  font-weight: 600;
   line-height: 24px;
   margin-top: 8px;
+  font-size: 18px;
 }
 
-/* Switch */
+#mode-text {
+  font-size: 12px;
+  opacity: 0.8;
+  margin-top: 4px;
+}
+
+/* ==========================================================
+   4. Switch
+   ========================================================== */
 #switch {
   position: relative;
   width: 64px;
-  margin: 4px auto;
+  margin: 8px auto 24px;
 }
 
 #switch button {
@@ -78,31 +115,31 @@ body * {
   z-index: 1;
   transform: translateY(-50%);
   cursor: pointer;
-}
-
-/* Animação suave ao alternar o modo */
-#switch button,
-#switch span {
-  transition: all 0.3s ease;
+  will-change: left, transform;
+  transition: all 0.4s ease-in-out, background 0.4s ease;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
 }
 
 .light #switch button {
-  left: calc(100% - 32px); /* substitui 'right:0' para mais suavidade */
+  left: 50%;
+  background: var(--surface-color) var(--switch-bg-url) no-repeat center;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.15);
 }
 
-/* Fundo do switch */
+
 #switch span {
   display: block;
   width: 64px;
   height: 24px;
   background: var(--surface-color);
   border: 1px solid var(--stroke-color);
-  backdrop-filter: blur(4px);
-  -webkit-backdrop-filter: blur(4px);
   border-radius: 9999px;
+  backdrop-filter: blur(4px);
 }
 
-/* Links */
+/* ==========================================================
+   5. Links
+   ========================================================== */
 ul {
   list-style: none;
   display: flex;
@@ -120,24 +157,28 @@ ul li a {
   border: 1px solid var(--stroke-color);
   border-radius: 8px;
   backdrop-filter: blur(4px);
-  -webkit-backdrop-filter: blur(4px);
   text-decoration: none;
-  font-weight: 500;
-  transition: background 0.3s, border 0.3s;
+  font-weight: 600;
+  color: var(--button-text-color);
+  box-shadow: var(--shadow);
+  transition: background 0.3s, transform 0.3s;
 }
 
-/* ⚠️ Removido "border: 1px solid red" que era para debug */
 ul li a:hover {
   background: var(--surface-color-hover);
-  border: 1.5px solid var(--text-color);
+  transform: translateY(-4px);
 }
 
-/* Social Links */
+
+/* ==========================================================
+   6. Social Links
+   ========================================================== */
 #social-links {
   display: flex;
   justify-content: center;
   padding: 24px 0;
   font-size: 24px;
+  gap: 12px;
 }
 
 #social-links a {
@@ -145,27 +186,53 @@ ul li a:hover {
   align-items: center;
   justify-content: center;
   padding: 16px;
-  transition: background 0.2s;
   border-radius: 50%;
+  transition: background 0.2s, transform 0.2s;
 }
 
 #social-links a:hover {
   background: var(--highlight-color);
+  transform: scale(1.15);
 }
 
-/* Rodapé */
+/* ==========================================================
+   7. Rodapé
+   ========================================================== */
 footer {
   padding: 24px 0;
   text-align: center;
   font-size: 14px;
+  opacity: 0.8;
 }
-/**media queries*/
 
-@media(min-width: 700px){
-  :root{
-      --bg-url:url(./assets/bg-desktop.jpg);
+footer a {
+  color: var(--text-color);
+  text-decoration: none;
+  font-weight: 600;
+}
+
+/* ==========================================================
+   8. Responsividade
+   ========================================================== */
+@media (min-width: 700px) {
+  :root {
+    --bg-url: url(./assets/bg-desktop.jpg);
   }
-  .light{
-      --bg-url:url(./assets/bg-desktop-light.jpg);
+  .light {
+    --bg-url: url(./assets/bg-desktop-light.jpg);
+  }
+}
+
+/* ==========================================================
+   9. Animações
+   ========================================================== */
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+    transform: translateY(10px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
   }
 }

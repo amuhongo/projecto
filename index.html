@@ -1,70 +1,54 @@
 <!DOCTYPE html>
-<html lang="pt-br" class="light">
+<html lang="pt-br">
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Projectos</title>
-    <link rel ="stylesheet" href= "style.css" />
+    <title>amuhongo | Portfólio</title>
+    <link rel="stylesheet" href="style.css" />
   </head>
+
   <body>
     <div id="container">
       <div id="profile">
-        <img 
-          src="./assets/avatar.png" alt="Foto de Agostinho Feliciano"
-        />
-          <p>amuhongo</p>
+        <img src="./assets/avatar.png" alt="Foto de Agostinho Feliciano" />
+        <p>@amuhongo</p>
+        <small id="mode-text">Modo Escuro</small>
       </div>
 
-      <div id="switch" onclick="toggleMode()">
-        <button>
-
-        </button>
-        <span>
+      <div id="switch" aria-label="Alternar modo claro/escuro" onclick="toggleMode()">
+        <button></button>
+        <span></span>
       </div>
+
       <ul>
-        <li>
-          <a href="#">Inscrever-se NLW</a>
-        </li>
-        <li>
-          <a href="#">Baixe o meu e-book</a>
-        </li>
-        <li>
-          <a href="https://github.com/amuhongo">Ver meu protfólio</a>
-        </li>
-        <li>
-          <a href="https://rocketseat.com.br/explorer"target="_blank"> Conheça o Explorer</a>
-        </li>
-        
+        <li><a href="./Curriculo_Agostinho_Feliciano_Moderno.pdf">Ver meu Currículo</a></li>
+        <li><a href="#">Baixe o meu e-book</a></li>
+        <li><a href="https://github.com/amuhongo" target="_blank">Ver meu portfólio</a></li>
+        <li><a href="mailto:agostinhomuhongofeliciano@gmail.com">✉️ Contactar por E-mail</a></li>
       </ul>
+
       <div id="social-links">
-          <a href="https://github.com/amuhongo" target="_blank">
-              <ion-icon name="logo-github"></ion-icon>
-          </a>
-
-         <a href="https://instagram.com/agostinho_feliciano18" target="_blank">
-               <ion-icon name="logo-instagram"></ion-icon>
-          </a>
-
-          <a href="https://facebook.com/Agostinho Feliciano" target="_blank">
-              <ion-icon name="logo-youtube"></ion-icon>
-          </a>
-
-         <a href="https://linkedin.com/in/agostinho-muhongo-feliciano-amuhongo" target="_blank">
-               <ion-icon name="logo-linkedin"></ion-icon>
-          </a>    
+        <a href="https://github.com/amuhongo" target="_blank" aria-label="GitHub">
+          <ion-icon name="logo-github"></ion-icon>
+        </a>
+        <a href="https://instagram.com/agostinho_feliciano18" target="_blank" aria-label="Instagram">
+          <ion-icon name="logo-instagram"></ion-icon>
+        </a>
+        <a href="https://facebook.com/AgostinhoFeliciano" target="_blank" aria-label="Facebook">
+          <ion-icon name="logo-facebook"></ion-icon>
+        </a>
+        <a href="https://linkedin.com/in/agostinho-muhongo-feliciano-amuhongo" target="_blank" aria-label="LinkedIn">
+          <ion-icon name="logo-linkedin"></ion-icon>
+        </a>
       </div>
 
-       <footer>
-         Inspirado com ♥  <a href="https://rocketseat.com.br/">Rocketseat</a>
-       </footer> 
-
+      <footer>
+        Inspirado com ❤️ por <a href="https://rocketseat.com.br/" target="_blank">Rocketseat</a>
+      </footer>
     </div>
+
     <script type="module" src="https://unpkg.com/ionicons@7.1.0/dist/ionicons/ionicons.esm.js"></script>
     <script nomodule src="https://unpkg.com/ionicons@7.1.0/dist/ionicons/ionicons.js"></script>
-
-    <script src="./script.js">
-
-    </script>
-
+    <script src="script.js"></script>
   </body>
 </html>
